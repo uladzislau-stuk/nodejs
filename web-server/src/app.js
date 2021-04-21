@@ -1,9 +1,29 @@
-import express from 'express';
+const express = require('express')
+const path = require('path')
+const hbs = require('hbs')
 
-const app = express();
+const app = express()
+
+// Define paths for Express config
+// const publicDirectoryPath = path.join(__dirname, '../public')
+const viewsDirectoryPath = path.join(__dirname, '../templates/views')
+const partialsDirectoryPath = path.join(__dirname, '../templates/partials')
+
+// Show express which templating engine to use
+app.set('view engine', 'hbs')
+// By default express searches files in view directory
+app.set('views', viewsDirectoryPath)
+hbs.registerPartials(partialsDirectoryPath)
+
+// Setup static directory to serve
+// app.use(express.static(publicDirectoryPath))
 
 app.get('', (req, res) => {
-  res.send('Hello express!')
+  // It should match the name of template we created in a views folder
+  res.render('index', {
+    title: 'Index.hbs',
+    name: `I'm index hbs`
+  })
 })
 
 app.get('/help', (req, res) => {
@@ -14,11 +34,22 @@ app.get('/help', (req, res) => {
 })
 
 app.get('/about', (req, res) => {
-  res.send('About page')
+  res.render('about', {
+    title: 'About',
+    name: `I'm about hbs`
+  })
 })
 
 app.get('/weather', (req, res) => {
-  res.send('<h1>Weather</h1>>')
+  res.send('<h1>Weather</h1>')
+})
+
+app.get('/help/*', (req, res) => {
+  res.send('<h1>Help article not found</h1>')
+})
+
+app.get('*', (req, res) => {
+  res.send('<h1>404 page</h1>')
 })
 
 // app.com/help
