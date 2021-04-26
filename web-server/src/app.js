@@ -41,6 +41,12 @@ app.get('/about', (req, res) => {
 })
 
 app.get('/weather', (req, res) => {
+  if (!req.query.city) {
+    return res.send({
+      error: 'You must provide a city'
+    })
+  }
+  console.log(req.query)
   res.send('<h1>Weather</h1>')
 })
 
