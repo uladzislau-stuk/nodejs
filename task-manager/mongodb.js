@@ -74,27 +74,56 @@ MongoClient.connect(connectionURL, {useUnifiedTopology: true}, (error, client) =
   // find
   // find return cursor as a value
   // cursor is a pointer to the database
-  db.collection('users').find({
-    age: 27
-  }).toArray( (error, users) => {
-    if (error) {
-      return console.log('Unable to fetch')
-    }
-    
-    console.log(users)
-  })
+  // db.collection('users').find({
+  //   age: 27
+  // }).toArray( (error, users) => {
+  //   if (error) {
+  //     return console.log('Unable to fetch')
+  //   }
+  //
+  //   console.log(users)
+  // })
   
   // count
   // there is no need to fetch all data and save them in memory
   // we can return just simple value
-  db.collection('users').find({
-    age: 27
-  }).count( (error, count) => {
-    if (error) {
-      return console.log('Unable to fetch')
-    }
-    
-    console.log(count)
-  })
+  // db.collection('users').find({
+  //   age: 27
+  // }).count( (error, count) => {
+  //   if (error) {
+  //     return console.log('Unable to fetch')
+  //   }
+  //
+  //   console.log(count)
+  // })
+  
+  // update document
+  // db.collection('users')
+  //   .updateOne({
+  //     _id: new ObjectID("60871970ee409c56b91f1e16")
+  //   }, {
+  //     // https://docs.mongodb.com/manual/reference/operator/update/
+  //     // $set: {
+  //     //   name: 'Mike'
+  //     // }
+  //     $inc: {
+  //       age: 1
+  //     }
+  //   }).then(result => {
+  //     console.log(result)
+  //   }).catch(error => {
+  //     console.log(error)
+  //   })
+  
+  // delete many
+  // db.collection('users')
+  //   .deleteMany({
+  //     age: 27
+  //   })
+  //   .then(result => {
+  //     console.log(result)
+  //   }).catch(error => {
+  //     console.log(error)
+  //   })
 })
 

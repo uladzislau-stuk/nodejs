@@ -1,0 +1,26 @@
+{
+  "name": "nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run:db": "/Users/anduser/MongoDB/bin/mongod --dbpath=/Users/anduser/MongoDB-Data"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uladzislau-stuk/nodejs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uladzislau-stuk/nodejs/issues"
+  },
+  "homepage": "https://github.com/uladzislau-stuk/nodejs#readme",
+  "dependencies": {
+    "@types/yargs": "^16.0.1",
+    "postman-request": "^2.88.1-postman.30",
+    "validator": "^13.5.2",
+    "yargs": "^16.2.0"
+  }
+}
