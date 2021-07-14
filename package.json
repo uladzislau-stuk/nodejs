@@ -19,6 +19,8 @@
   "homepage": "https://github.com/uladzislau-stuk/nodejs#readme",
   "dependencies": {
     "@types/yargs": "^16.0.1",
+    "bcrypt": "^5.0.1",
+    "jsonwebtoken": "^8.5.1",
     "postman-request": "^2.88.1-postman.30",
     "validator": "^13.5.2",
     "yargs": "^16.2.0"
