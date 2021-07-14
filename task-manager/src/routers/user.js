@@ -8,7 +8,7 @@ router.post('/users', async (req, res) => {
   try {
     const user = new User(req.body)
     await user.save()
-    // TODO: generateAuthToken not available here
+
     const token = await user.generateAuthToken()
     res.status(201).send({
       user,
