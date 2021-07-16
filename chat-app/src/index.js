@@ -40,9 +40,9 @@ io.on('connection', (socket) => {
     socket.join(user.room)
   
     // socket contains information about new connection
-    socket.emit('message', generateMessage('Welcome'))
+    socket.emit('message', generateMessage({ text: 'Welcome' }))
     
-    socket.broadcast.to(user.room).emit('message', generateMessage(`${user.username} has joined!`))
+    socket.broadcast.to(user.room).emit('message', generateMessage({text: `${user.username} has joined!`}))
     io.to(user.room).emit('roomData', {
       room: user.room,
       users: getUsersInRoom(user.room)
@@ -60,13 +60,13 @@ io.on('connection', (socket) => {
     
     const {room, username} = getUser(socket.id)
     
-    io.to(room).emit('message', generateMessage(username, message))
+    io.to(room).emit('message', generateMessage({id: socket.id, username, text: message}))
   })
   
   socket.on('sendLocation', (coords, callback) => {
     const {username, room} = getUser(socket.id)
-    
-    io.to(room).emit('locationMessage', generateLocationMessage(username, `https://google.com/maps?q=${coords.latitude},${coords.longitude}`))
+    io.to(room).emit('locationMessage', generateLocationMessage({ id: socket.id, username, url: `https://google.com/maps?q=${coords.latitude},${coords.longitude}`
+  }))
     callback('Location shared!')
   })
   
@@ -75,7 +75,7 @@ io.on('connection', (socket) => {
     const user = removeUser(socket.id)
     
     if (user) {
-      io.to(user.room).emit('message', generateMessage(`${user.username} has left!`))
+      io.to(user.room).emit('message', generateMessage({id: socket.id, text: `${user.username} has left!`}))
       io.to(user.room).emit('roomData', {
         room: user.room,
         users: getUsersInRoom(user.room)
